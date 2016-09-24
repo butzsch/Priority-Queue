@@ -74,20 +74,13 @@ sub insert {
 sub _small_child {
     my ($self, $p) = @_;
 
-    my $l_c = 2 * $p;
-    my $r_c = 2 * $p + 1;
-
     my $max = $self->{elems}->$#*;
 
-    if ($l_c > $max) {
-        if($r_c > $max) {
-            return;
-        }
-        return $r_c;
-    }
-    if($r_c > $max) {
-        return $l_c;
-    }
+    my $l_c = 2 * $p;
+    return if($l_c > $max);
+
+    my $r_c = $l_c + 1;
+    return $l_c if($r_c > $max);
 
     return $self->_compare_at($l_c, $r_c) ? $l_c : $r_c;
 }

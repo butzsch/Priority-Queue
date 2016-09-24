@@ -3,6 +3,8 @@ use warnings;
 use strict;
 use 5.024_000;
 
+our $VERSION = '0.01';
+
 sub new {
     my ($class, $self) = @_;
 

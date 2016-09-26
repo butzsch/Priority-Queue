@@ -104,10 +104,12 @@ sub extract {
     my ($self) = @_;
 
     return if($self->empty());
-    return pop($self->{elems}->@*) if($self->size() == 1);
+
+    my $leaf = pop($self->{elems}->@*);
+    return $leaf if($self->size() == 1);
 
     my $extr = $self->{elems}->[1];
-    $self->{elems}->[1] = pop($self->{elems}->@*);
+    $self->{elems}->[1] = $leaf;
     $self->_sink_down();
 
     return $extr;
